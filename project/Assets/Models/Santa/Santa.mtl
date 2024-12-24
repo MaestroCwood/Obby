@@ -1,0 +1,76 @@
+newmtl Handle1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0627451 0.0627451 0.0627451 
+
+d 1
+
+Ns 0
+
+map_Ka Handle1_diff.png
+map_Kd Handle1_diff.png
+map_d Handle1_diff.png
+
+newmtl Handle2Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.027451 0.027451 0.027451 
+
+d 1
+
+Ns 0
+
+map_Ka Handle1_diff.png
+map_Kd Handle1_diff.png
+map_d Handle1_diff.png
+
+newmtl Handle14Mtl
+Material Color
+Ka 0.383775 0 0
+Kd 0.383775 0 0
+Ks 0.010535 0 0 
+
+d 1
+
+Ns 0
+
+map_Ka Handle14_diff.png
+map_Kd Handle14_diff.png
+map_d Handle14_diff.png
+
+map_Bump Handle14_nmap.png
+
+newmtl Handle3Mtl
+Material Color
+Ka 0.018913 0.018913 0.018913
+Kd 0.018913 0.018913 0.018913
+Ks 0.00051918 0.00051918 0.00051918 
+
+d 1
+
+Ns 0
+
+map_Ka Handle3_diff.png
+map_Kd Handle3_diff.png
+map_d Handle3_diff.png
+
+map_Bump Handle3_nmap.png
+
+map_Ns Handle3_spec.png
+
+newmtl Handle15Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.027451 0.027451 0.027451 
+
+d 1
+
+Ns 0
+
+map_Ka Handle15_diff.png
+map_Kd Handle15_diff.png
+map_d Handle15_diff.png
+

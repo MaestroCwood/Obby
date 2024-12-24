@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5b51b5d86167cea48995780e9be86262
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 168259
+  packageName: '[URP] Lines Shaders'
+  packageVersion: 1.0
+  assetPath: Assets/URPLinesShaders/DemoScene/Cube.controller
+  uploadId: 380777

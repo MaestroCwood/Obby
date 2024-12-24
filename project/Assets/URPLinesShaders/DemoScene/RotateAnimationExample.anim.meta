@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4319761081d6ea345b65efd08ea819cb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 168259
+  packageName: '[URP] Lines Shaders'
+  packageVersion: 1.0
+  assetPath: Assets/URPLinesShaders/DemoScene/RotateAnimationExample.anim
+  uploadId: 380777

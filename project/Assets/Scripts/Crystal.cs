@@ -9,6 +9,7 @@ public class Crystal : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             GamePLay.instance.AddCrystal(addCrystal);
+            LeadbordCrystal.Instance.UpdateCrystal();
             Destroy(gameObject);
         }
     }

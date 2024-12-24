@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f4e2ffd7b05350042bee33bffd38b67e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 168259
+  packageName: '[URP] Lines Shaders'
+  packageVersion: 1.0
+  assetPath: Assets/URPLinesShaders/README.md
+  uploadId: 380777

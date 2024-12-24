@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 399d8d1fcb0a15e41ab2e656a2cf651b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 168259
+  packageName: '[URP] Lines Shaders'
+  packageVersion: 1.0
+  assetPath: Assets/URPLinesShaders/Documentation.pdf
+  uploadId: 380777

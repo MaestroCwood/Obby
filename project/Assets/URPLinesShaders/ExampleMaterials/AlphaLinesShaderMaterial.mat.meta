@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: abbf69f63294d8841bea71695852e777
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 168259
+  packageName: '[URP] Lines Shaders'
+  packageVersion: 1.0
+  assetPath: Assets/URPLinesShaders/ExampleMaterials/AlphaLinesShaderMaterial.mat
+  uploadId: 380777

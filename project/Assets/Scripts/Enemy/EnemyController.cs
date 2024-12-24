@@ -10,10 +10,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] Transform startCast;    // Точка начала луча (например, передняя часть врага)
 
     [SerializeField] Transform targetPlayer;  // Игрок, за которым следует враг
+    [SerializeField] Transform targetNpc;  
     [SerializeField] Vector3 startPos;        // Стартовая позиция врага
+    [SerializeField] LayerMask obstacleLayer;
 
     RaycastHit hit;  // Переменная для хранения результатов BoxCast
-    bool playerInSight = false;  // Флаг, указывающий, что игрок виден
+    bool playerInSight = false; 
+    bool npcInSight = false; 
 
     Animator animator;
 
@@ -33,11 +36,11 @@ public class EnemyController : MonoBehaviour
        
 
 
-        if (distance <= 0.1f && !agent.hasPath && !playerInSight)
+        if (distance <= 0.3f && !agent.hasPath && !playerInSight)
         {
 
             animator.SetBool("run", false);
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
         
@@ -53,23 +56,33 @@ public class EnemyController : MonoBehaviour
         // Направление луча
         Vector3 direction = transform.forward;
 
-        // Выполнение BoxCast (параметры: начало, размер коробки, направление, вращение, дальность)
-        if (Physics.BoxCast(origin, boxSize / 2f, direction, out hit, Quaternion.identity, rangeCast))
+        // Выполнение BoxCast
+        if (Physics.BoxCast(origin, boxSize / 2f, direction, out hit, Quaternion.identity, rangeCast, obstacleLayer))
         {
-            // Если объект с тэгом "Player" был обнаружен
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.CompareTag("Npc"))
             {
-                playerInSight = true;
-                Debug.Log("Player detected: " + hit.collider.name);
+                npcInSight = true;
+                targetNpc = hit.collider.transform; // Устанавливаем текущего NPC как цель
             }
             else
             {
-                playerInSight = false;  // Игрок не в зоне видимости
+                npcInSight = false;
+            }
+
+            if (hit.collider.CompareTag("Player"))
+            {
+                playerInSight = true;
+            }
+            else
+            {
+                playerInSight = false;
             }
         }
         else
         {
-            playerInSight = false;  // Игрок не в зоне видимости
+            playerInSight = false;
+            npcInSight = false;
+            targetNpc = null; // Сбрасываем цель, если NPC не обнаружен
         }
     }
 
@@ -111,15 +124,19 @@ public class EnemyController : MonoBehaviour
             // Если игрок в поле зрения, враг идет к нему
             agent.SetDestination(targetPlayer.position);
             animator.SetBool("run", true);
-            Debug.Log("Moving towards player");
+        }
+        else if (npcInSight && targetNpc != null)
+        {
+            // Если NPC в поле зрения, враг идет к нему
+            agent.SetDestination(targetNpc.position);
+            animator.SetBool("run", true);
         }
         else
         {
-            // Если игрок не в поле зрения, враг возвращается на стартовую позицию
+            // Если никого нет в поле зрения, враг возвращается на стартовую позицию
             if (!agent.hasPath)
             {
                 agent.SetDestination(startPos);
-              
                
             }
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using YG;
 
@@ -10,7 +11,12 @@ public class Leaderbrd : MonoBehaviour
         Instance = this;
     }
 
-   public void UpdateScore()
+    private void Start()
+    {
+        UpdateLeaderBord();
+    }
+
+    public void UpdateScore()
     {
         int saveCoin = PlayerPrefs.GetInt("Coin");
         int currentCoin = GamePLay.instance.coin;
@@ -20,6 +26,16 @@ public class Leaderbrd : MonoBehaviour
             leaderboard.NewScore(GamePLay.instance.coin);
         }
         
+    }
+
+   IEnumerator UpdateLeaderBord()
+    {
+        while (true)
+        {
+            UpdateScore();
+            leaderboard.UpdateLB();
+            yield return new WaitForSeconds(5f);
+        }
     }
     
 }

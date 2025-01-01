@@ -4,42 +4,31 @@ using UnityEngine;
 public class SpawnNpc : MonoBehaviour
 {
     [SerializeField] GameObject npc;
-    [SerializeField] float minRandom, maxRandom; 
+    [SerializeField] float minRandom, maxRandom;
+    [SerializeField] float waitSpawnTime;
+    [SerializeField] int maxCountNpc;
+   
+
     public int countNpc;
     void Start()
     {
-       // StartCoroutine(nameof(SpawnNpcTimer));
+        StartCoroutine(nameof(SpawnNpcTimer));
     }
 
-    
-    void Update()
+
+    IEnumerator SpawnNpcTimer()
     {
-        if(Input.GetKeyDown(KeyCode.V)) 
+        while (countNpc <= maxCountNpc)
         {
-            SpawnNpcLabirint();
+            Vector3 randomOffset = new Vector3(Random.Range(minRandom, maxRandom), transform.position.y, Random.Range(minRandom, maxRandom));
+            Instantiate(npc, transform.position + randomOffset, Quaternion.identity);
+            countNpc++;
+            yield return new WaitForSeconds(waitSpawnTime);
         }
-    }
 
-    //IEnumerator SpawnNpcTimer()
-    //{
-    //    while (countNpc <= 5)
-    //    {
-    //        Vector3 randomOffset = new Vector3(Random.Range(minRandom, maxRandom), transform.position.y, Random.Range(minRandom, maxRandom));
-    //        Instantiate(npc, transform.position + randomOffset, Quaternion.identity);
-    //        countNpc++;
-    //        yield return new WaitForSeconds(5f);
-    //    }
-        
-    //    countNpc = 0;
-    //    Debug.Log("spawnenemy " + countNpc);
+       
 
-    //    yield return null;
-    //}
-
-    public void SpawnNpcLabirint()
-    {
-        Instantiate(npc, transform.position, Quaternion.identity);
-        countNpc++;
+        yield return null;
     }
 
 }

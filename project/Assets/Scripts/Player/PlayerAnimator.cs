@@ -35,7 +35,8 @@ public class PlayerAnimator : MonoBehaviour
 
         if (inputService.GetActionButton())
         {
-            //animator.SetTrigger("deatch");
+            animator.SetTrigger("attack");
+            GamePLay.instance.AddPower(5);
         }
     }
 }

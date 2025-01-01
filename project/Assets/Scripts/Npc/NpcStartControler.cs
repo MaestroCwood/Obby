@@ -9,20 +9,32 @@ public class NpcStartController : MonoBehaviour
     private Transform[] points;
     private int currentPointIndex = 0;
     private bool isWaiting = false;
+    bool isSpawn = false;
+    [SerializeField] SkinnedMeshRenderer skinnedMeshRenderer;
+    [SerializeField] Material[] materials;
+    
+    [SerializeField] GameObject particalFx;
+    
+  
 
     [SerializeField] private string pointsTag = "Waypoint"; // Тег для поиска точек
+   
     [SerializeField] private float waitTime = 3f; // Время ожидания на каждой точке
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+       
+
+
     }
 
     private void Start()
     {
-        // Поиск точек по тегу
+        
         GameObject[] pointObjects = GameObject.FindGameObjectsWithTag(pointsTag);
+        
         points = new Transform[pointObjects.Length];
 
         for (int i = 0; i < pointObjects.Length; i++)
@@ -35,27 +47,53 @@ public class NpcStartController : MonoBehaviour
         {
             MoveToNextPoint();
         }
-        else
+
+
+        SetRandomSkin();
+
+        SetRandomPriorety();
+
+    }
+
+    public void SetRandomPriorety()
+    {
+        int random = Random.Range(1, 100);
+        agent.avoidancePriority = random;
+    }
+    public void SetRandomSkin()
+    {
+        Material randomaterial = materials[Random.Range(0, materials.Length)];
+        skinnedMeshRenderer.material = randomaterial;
+        Debug.Log(randomaterial);
+    }
+      
+    private void Update()
+    {
+        if (isWaiting) return; // Если NPC уже ждет, ничего не делаем
+
+        // Проверяем, достиг ли NPC текущей точки
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            Debug.LogWarning("Точки с тегом " + pointsTag + " не найдены!");
+            if (currentPointIndex == points.Length - 1 && !isSpawn)
+            {
+                
+                OnLastPointReached();
+            }
+            else
+            {
+                // Если достиг промежуточной точки
+                StartCoroutine(WaitAtPoint());
+            }
         }
     }
 
-    private void Update()
-    {
-        // Проверяем, достиг ли агент цели, и запускаем переход к следующей точке
-        if (!isWaiting && !agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
-        {
-            StartCoroutine(WaitAtPoint());
-        }
-    }
 
     private void MoveToNextPoint()
     {
         if (points.Length == 0) return;
 
-        // Устанавливаем следующую точку назначения
-        agent.SetDestination(points[currentPointIndex].position);
+        Vector3 random = new Vector3(Random.Range(-5,5) ,0 , Random.Range(-5,5));
+        agent.SetDestination(points[currentPointIndex].position + random);
 
         // Анимация движения (если есть)
         if (animator != null)
@@ -65,6 +103,30 @@ public class NpcStartController : MonoBehaviour
         }
     }
 
+    private void OnLastPointReached()
+    {
+        isSpawn = true;
+
+      
+        agent.isStopped = true; 
+        if (animator != null)
+        {
+            animator.SetBool("run", false);
+        }
+
+        Instantiate(particalFx,transform.position, Quaternion.identity);
+        GetComponent<NpcController>().enabled = true;
+        agent.enabled = false;
+        GameObject labPosition = GameObject.FindGameObjectWithTag("labPositionTransform");
+        transform.position = labPosition.transform.position;
+        Invoke("EnabledNpcControler", 0.1f);
+    }
+
+    void EnabledNpcControler()
+    {
+        agent.enabled = true;
+    
+    }
     private IEnumerator WaitAtPoint()
     {
         isWaiting = true;

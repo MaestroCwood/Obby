@@ -3,142 +3,111 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    NavMeshAgent agent;
-    [SerializeField] float rangeCast = 10f;  // Дальность луча
-    [SerializeField] float boxWidth = 1f;    // Ширина коробки
-    [SerializeField] float boxHeight = 2f;   // Высота коробки
-    [SerializeField] Transform startCast;    // Точка начала луча (например, передняя часть врага)
+    [SerializeField] float rangeCast = 10f;  // Дальность BoxCast
+    [SerializeField] float boxWidth = 1f;    // Ширина BoxCast
+    [SerializeField] float boxHeight = 2f;   // Высота BoxCast
+    [SerializeField] float maxFollowDistance = 15f; // Максимальная дистанция для преследования
+    [SerializeField] Transform startCast;    // Точка начала BoxCast
 
-    [SerializeField] Transform targetPlayer;  // Игрок, за которым следует враг
-    [SerializeField] Transform targetNpc;  
-    [SerializeField] Vector3 startPos;        // Стартовая позиция врага
-    [SerializeField] LayerMask obstacleLayer;
-
-    RaycastHit hit;  // Переменная для хранения результатов BoxCast
-    bool playerInSight = false; 
-    bool npcInSight = false; 
-
-    Animator animator;
+    private NavMeshAgent agent;
+    private Vector3 startPos;
+    private Transform currentTarget;
+    private Animator animator;
+    private Quaternion startRotation;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        startPos = transform.position;  // Запоминаем стартовую позицию
+        startPos = transform.position;
         animator = GetComponent<Animator>();
+        startRotation = transform.rotation;
     }
 
     void Update()
     {
-        RaycastEnemy();
-        StartEnemy();
+        RaycastForTarget();
 
-        float distance = Vector3.Distance(transform.position, startPos);
-       
-
-
-        if (distance <= 0.3f && !agent.hasPath && !playerInSight)
+        if (currentTarget != null)
         {
+            float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
 
-            animator.SetBool("run", false);
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            if (distanceToTarget <= agent.stoppingDistance)
+            {
+                // Цель достигнута, возвращаемся на стартовую позицию
+                currentTarget = null;
+            }
+            else if (distanceToTarget <= maxFollowDistance)
+            {
+                FollowTarget();
+            }
+            else
+            {
+                ReturnToStartPosition();
+            }
+        }
+        else
+        {
+            ReturnToStartPosition();
         }
 
-        
+        HandleIdleState();
     }
 
-    // Метод для выполнения BoxCast и проверки, видит ли враг игрока
-    void RaycastEnemy()
+    // Выполняет BoxCast для поиска цели
+    void RaycastForTarget()
     {
-        // Позиция луча (начало)
         Vector3 origin = startCast.position;
-        // Размер коробки (ширина, высота, глубина)
         Vector3 boxSize = new Vector3(boxWidth, boxHeight, rangeCast);
-        // Направление луча
         Vector3 direction = transform.forward;
 
-        // Выполнение BoxCast
-        if (Physics.BoxCast(origin, boxSize / 2f, direction, out hit, Quaternion.identity, rangeCast, obstacleLayer))
+        if (Physics.BoxCast(origin, boxSize / 2, direction, out RaycastHit hit, Quaternion.identity, rangeCast))
         {
-            if (hit.collider.CompareTag("Npc"))
+            if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Npc"))
             {
-                npcInSight = true;
-                targetNpc = hit.collider.transform; // Устанавливаем текущего NPC как цель
+                currentTarget = hit.collider.transform;
             }
-            else
-            {
-                npcInSight = false;
-            }
-
-            if (hit.collider.CompareTag("Player"))
-            {
-                playerInSight = true;
-            }
-            else
-            {
-                playerInSight = false;
-            }
-        }
-        else
-        {
-            playerInSight = false;
-            npcInSight = false;
-            targetNpc = null; // Сбрасываем цель, если NPC не обнаружен
         }
     }
 
+    // Преследует текущую цель
+    void FollowTarget()
+    {
+        if (currentTarget != null)
+        {
+            agent.SetDestination(currentTarget.position);
+            animator.SetBool("run", true);
+        }
+    }
+
+    // Возвращается к стартовой позиции
+    void ReturnToStartPosition()
+    {
+        if (Vector3.Distance(transform.position, startPos) > agent.stoppingDistance)
+        {
+            agent.SetDestination(startPos);
+            animator.SetBool("run", true);
+        }
+    }
+
+    // Проверяет, нужно ли остановить врага
+    void HandleIdleState()
+    {
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            animator.SetBool("run", false);
+            agent.ResetPath();
+        }
+    }
+
+    // Визуализация BoxCast в редакторе
     private void OnDrawGizmos()
     {
-        // Если мы уже получили результат Raycast, рисуем визуализацию
-        if (hit.collider != null)
-        {
-            // Отрисовываем сам луч
-            Gizmos.color = Color.red;
-            Gizmos.DrawLine(startCast.position, hit.point);  // От точки начала до точки попадания
+        if (startCast == null) return;
 
-            // Отрисовываем место попадания
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(hit.point, 0.2f);  // Маленькая сфера в точке попадания
-
-            // Отрисовываем коробку в позиции попадания
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(hit.point, new Vector3(boxWidth, boxHeight, rangeCast)); // Коробка в точке попадания
-        }
-        else
-        {
-            // Если попадания нет, рисуем BoxCast область на расстоянии rangeCast
-            Gizmos.color = Color.green;
-
-            // Рисуем коробку на пути луча, не на точке попадания, а на расстоянии rangeCast
-            Vector3 boxCenter = startCast.position + transform.forward * (rangeCast / 2f);  // Центр коробки на пути луча
-            Vector3 boxSize = new Vector3(boxWidth, boxHeight, rangeCast);
-
-            Gizmos.DrawWireCube(boxCenter, boxSize);  // Рисуем коробку в центре на пути луча
-        }
-    }
-
-    // Метод, который контролирует поведение врага
-    public void StartEnemy()
-    {
-        if (playerInSight)
-        {
-            // Если игрок в поле зрения, враг идет к нему
-            agent.SetDestination(targetPlayer.position);
-            animator.SetBool("run", true);
-        }
-        else if (npcInSight && targetNpc != null)
-        {
-            // Если NPC в поле зрения, враг идет к нему
-            agent.SetDestination(targetNpc.position);
-            animator.SetBool("run", true);
-        }
-        else
-        {
-            // Если никого нет в поле зрения, враг возвращается на стартовую позицию
-            if (!agent.hasPath)
-            {
-                agent.SetDestination(startPos);
-               
-            }
-        }
+        Gizmos.color = currentTarget != null ? Color.red : Color.green;
+        Vector3 boxCenter = startCast.position + transform.forward * (rangeCast / 2f);
+        Vector3 boxSize = new Vector3(boxWidth, boxHeight, rangeCast);
+        Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
+        Gizmos.DrawWireCube(Vector3.zero, boxSize);
     }
 }

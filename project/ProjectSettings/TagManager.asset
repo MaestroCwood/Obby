@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Npc
   - Enemy
+  - Waypoint
+  - labPositionTransform
   layers:
   - Default
   - TransparentFX

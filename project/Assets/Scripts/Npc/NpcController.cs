@@ -8,6 +8,7 @@ public class NpcController : MonoBehaviour
     Vector3 startPoint;
     NavMeshAgent agent;
     Animator animator;
+    NpcStartController npcStartController;
 
     // Диапазон, в котором NPC будет перемещаться
     public float moveRangeX = 10f;
@@ -15,8 +16,14 @@ public class NpcController : MonoBehaviour
     public float navMeshCheckDistance = 5f; // Максимальное расстояние для поиска подходящей точки на NavMesh
     public float stopTime = 3f; // Время остановки на точке (в секундах)
 
-    void Start()
+    private void Awake()
     {
+        npcStartController = GetComponent<NpcStartController>();
+    }
+
+    void Start()
+    {   
+        npcStartController.enabled = false;
         startPoint = transform.position;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -25,10 +32,7 @@ public class NpcController : MonoBehaviour
         {
             GenerateRandomPoint(); // Генерируем первую случайную точку
         }
-        else
-        {
-            Debug.LogError("NavMeshAgent is not properly configured or not on NavMesh!");
-        }
+       
     }
 
     void Update()

@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using TMPro;
 using UnityEngine;
 
@@ -7,8 +8,10 @@ public class GamePLay : MonoBehaviour
 
     public int coin;
     public int crystal;
+    public int power;
     [SerializeField] TextMeshProUGUI textCoin;
     [SerializeField] TextMeshProUGUI textCrystal;
+    [SerializeField] TextMeshProUGUI powerText;
 
     private void Start()
     {
@@ -53,5 +56,18 @@ public class GamePLay : MonoBehaviour
         PlayerPrefs.SetInt("Crystal", crystal);
         PlayerPrefs.Save();
         UpdateCrystal();
+    }
+
+    public void AddPower (int count)
+    {
+        power += count;
+        PlayerPrefs.SetInt("Power", power);
+        PlayerPrefs.Save();
+        UpdatePowerText();
+    }
+
+    public void UpdatePowerText()
+    {
+        powerText.text = power.ToString();
     }
 }

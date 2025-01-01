@@ -3,7 +3,8 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField] float speedRotete;
-    [SerializeField] int addCountCoin;
+    int addCountCoin;
+    [SerializeField] int minRandom,maxRandom;
     void Start()
     {
         
@@ -18,7 +19,9 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
-        {   
+        {   int random = Random.Range(minRandom,maxRandom);
+            addCountCoin = random;
+            AudioMagager.Instance.SoundFx(0);
             GamePLay.instance.AddCoin(addCountCoin);
             Leaderbrd.Instance.UpdateScore();
             Destroy(gameObject);

@@ -10,6 +10,7 @@ public class Crystal : MonoBehaviour
         {
             GamePLay.instance.AddCrystal(addCrystal);
             LeadbordCrystal.Instance.UpdateCrystal();
+            AudioMagager.Instance.SoundFx(1);
             Destroy(gameObject);
         }
     }

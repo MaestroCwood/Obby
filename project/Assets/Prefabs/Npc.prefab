@@ -40,7 +40,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76251275291978323}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8332255770586749469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb98619187939b94fb328036ec1299a1, type: 3}
   m_Name: 
@@ -1129,17 +1129,17 @@ NavMeshAgent:
   m_GameObject: {fileID: 8332255770586749469}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1.51
+  m_Radius: 1
   m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 320
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 3.59
-  m_BaseOffset: -0.69
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &4537810996386757590
@@ -1190,6 +1190,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97969373b2b302c4caeb25d9f6cb2de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 7348511081281448314}
+  materials:
+  - {fileID: 2100000, guid: d5531936b159dc34a91c402b9c347635, type: 2}
+  - {fileID: 2100000, guid: 44ad442d925b5114880b8730bf1ba48a, type: 2}
+  - {fileID: 2100000, guid: 2bd2b7f605ae1a2439dd0d3a44bd88d4, type: 2}
+  - {fileID: 2100000, guid: 0552082f28e0aec44b0d242252ce47ee, type: 2}
+  - {fileID: 2100000, guid: 3fe28b6c6859cd94797eec7d950d25ec, type: 2}
+  - {fileID: 2100000, guid: 7c88095fd971e4c4c84f7960e00116df, type: 2}
+  - {fileID: 2100000, guid: ea4bd0bcfdaad444b9454331a1a046be, type: 2}
+  - {fileID: 2100000, guid: 4a81c7cd09fdd5547a1700ba63e8f0ad, type: 2}
+  - {fileID: 2100000, guid: eb543d4c5ed853046a8b6faf15831a32, type: 2}
+  particalFx: {fileID: 417761080263594737, guid: 7800b8f6b712bfe49bd663eeb3ebe1e4, type: 3}
+  pointsTag: Waypoint
+  waitTime: 3
 --- !u!1 &8376590349534107429
 GameObject:
   m_ObjectHideFlags: 0

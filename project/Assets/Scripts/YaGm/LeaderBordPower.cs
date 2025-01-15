@@ -6,6 +6,7 @@ public class LeaderBordPower : MonoBehaviour
 {
     public static LeaderBordPower Instance;
     public LeaderboardYG leaderboard;
+    [SerializeField] float waitSendRecord;
 
     void Awake()
     {
@@ -14,7 +15,8 @@ public class LeaderBordPower : MonoBehaviour
 
     private void Start()
     {
-        UpdateLeaderBordPower();
+        
+        Invoke("StartUpdateLb", 1f);
     }
 
     public void UpdatePower()
@@ -22,20 +24,30 @@ public class LeaderBordPower : MonoBehaviour
         int saveCoin = PlayerPrefs.GetInt("Power");
         int currentCoin = GamePLay.instance.power;
 
-        if (currentCoin >= saveCoin)
+        if (currentCoin > saveCoin)
         {
             leaderboard.NewScore(GamePLay.instance.power);
+            leaderboard.UpdateLB();
         }
 
     }
 
     IEnumerator UpdateLeaderBordPower()
     {
+        
         while (true)
         {
+           
             UpdatePower();
-            leaderboard.UpdateLB();
-            yield return new WaitForSeconds(5f);
+            
+            yield return new WaitForSeconds(waitSendRecord);
         }
+
+        
+    }
+
+    void StartUpdateLb()
+    {
+        StartCoroutine(nameof(UpdateLeaderBordPower));
     }
 }

@@ -32,12 +32,14 @@ namespace KinematicCharacterController.Examples
         private void Update()
         {
 
+            
             HandleCharacterInput();
         }
 
         private void LateUpdate()
         {
             // Handle rotating the camera along with physics movers
+            
             if (CharacterCamera.RotateWithPhysicsMover && Character.Motor.AttachedRigidbody != null)
             {
                 CharacterCamera.PlanarDirection = Character.Motor.AttachedRigidbody.GetComponent<PhysicsMover>().RotationDeltaFromInterpolation * CharacterCamera.PlanarDirection;

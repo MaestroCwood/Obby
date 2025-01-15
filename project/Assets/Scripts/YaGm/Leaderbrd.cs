@@ -6,6 +6,7 @@ public class Leaderbrd : MonoBehaviour
 {   
     public static Leaderbrd Instance;   
     public LeaderboardYG leaderboard;
+    [SerializeField] float waitSendRecord;
     void Awake()
     {
         Instance = this;
@@ -13,7 +14,7 @@ public class Leaderbrd : MonoBehaviour
 
     private void Start()
     {
-        UpdateLeaderBord();
+        Invoke("StartUpdateLb", 2f);
     }
 
     public void UpdateScore()
@@ -21,9 +22,10 @@ public class Leaderbrd : MonoBehaviour
         int saveCoin = PlayerPrefs.GetInt("Coin");
         int currentCoin = GamePLay.instance.coin;
 
-        if(currentCoin >= saveCoin)
+        if(currentCoin > saveCoin)
         {
             leaderboard.NewScore(GamePLay.instance.coin);
+            leaderboard.UpdateLB();
         }
         
     }
@@ -33,9 +35,14 @@ public class Leaderbrd : MonoBehaviour
         while (true)
         {
             UpdateScore();
-            leaderboard.UpdateLB();
-            yield return new WaitForSeconds(5f);
+            
+            yield return new WaitForSeconds(waitSendRecord);
         }
     }
     
+    void StartUpdateLb()
+    {
+        StartCoroutine(nameof(UpdateLeaderBord));
+
+    }
 }

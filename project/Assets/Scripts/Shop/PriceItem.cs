@@ -33,7 +33,7 @@ public class PriceItem : MonoBehaviour
         {
             isPurchased = true;
             isSelected = true;
-            skinnedMeshRenderer.material = skins; // ѕримен€ем материал по умолчанию
+            skinnedMeshRenderer.material = skins; 
         }
         UpdateUI();
 
@@ -47,6 +47,7 @@ public class PriceItem : MonoBehaviour
         if(currentCoin >= priceCard)
         {
             isPurchased = true;
+            PurchasedCoin();
             buyButton.SetActive(false);
             gettedText.SetActive(true);
             UpdateUI();
@@ -58,10 +59,10 @@ public class PriceItem : MonoBehaviour
     {
         if (isPurchased)
         {
-            // —нимаем выбор со всех остальных карточек
+            
             ChekengSelect.Instance.DeselectAllSkins();
 
-            // ”станавливаем выбранный материал
+            
             skinnedMeshRenderer.material = skins;
             isSelected = true;
 
@@ -89,12 +90,12 @@ public class PriceItem : MonoBehaviour
         string keyPurchased = $"Skin_{idCardSkin}_Purchased";
         string keySelected = $"Skin_{idCardSkin}_Selected";
 
-        isPurchased = PlayerPrefs.GetInt(keyPurchased, 0) == 1; // 1 = куплен, 0 = не куплен
-        isSelected = PlayerPrefs.GetInt(keySelected, 0) == 1; // 1 = выбран, 0 = не выбран
+        isPurchased = PlayerPrefs.GetInt(keyPurchased, 0) == 1; 
+        isSelected = PlayerPrefs.GetInt(keySelected, 0) == 1; 
 
         if (isSelected)
         {
-            skinnedMeshRenderer.material = skins; // ѕримен€ем материал, если скин выбран
+            skinnedMeshRenderer.material = skins; 
         }
     }
 
@@ -105,7 +106,7 @@ public class PriceItem : MonoBehaviour
 
         PlayerPrefs.SetInt(keyPurchased, isPurchased ? 1 : 0);
         PlayerPrefs.SetInt(keySelected, isSelected ? 1 : 0);
-        PlayerPrefs.Save(); // —охран€ем изменени€
+        PlayerPrefs.Save();
     }
 
     public void UpdateUI()
@@ -113,5 +114,11 @@ public class PriceItem : MonoBehaviour
         buyButton.SetActive(!isPurchased); 
         gettedText.SetActive(isPurchased); 
         gettedImage.SetActive(isSelected); 
+    }
+
+    void PurchasedCoin()
+    {
+        GamePLay.instance.coin -= priceCard;
+        GamePLay.instance.UpdateCountCoin();
     }
 }

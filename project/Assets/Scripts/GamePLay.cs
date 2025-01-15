@@ -1,4 +1,4 @@
-using NUnit.Framework.Internal;
+
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +12,7 @@ public class GamePLay : MonoBehaviour
     [SerializeField] TextMeshProUGUI textCoin;
     [SerializeField] TextMeshProUGUI textCrystal;
     [SerializeField] TextMeshProUGUI powerText;
+    [SerializeField] ParticleSystem particleSystem;
 
     private void Start()
     {
@@ -28,8 +29,15 @@ public class GamePLay : MonoBehaviour
             crystal = PlayerPrefs.GetInt("Crystal");
         } else crystal = 0;
 
+        if (PlayerPrefs.HasKey("Power"))
+        {
+            power = PlayerPrefs.GetInt("Power");
+        }
+        else power = 0;
+
         UpdateCountCoin();
         UpdateCrystal();
+        UpdatePowerText();
     }
 
     public void AddCoin(int coins)
@@ -61,6 +69,8 @@ public class GamePLay : MonoBehaviour
     public void AddPower (int count)
     {
         power += count;
+        particleSystem.Play();
+        AudioMagager.Instance.SoundFx(2);
         PlayerPrefs.SetInt("Power", power);
         PlayerPrefs.Save();
         UpdatePowerText();

@@ -6,7 +6,8 @@ public class LeadbordCrystal : MonoBehaviour
 {
     public static LeadbordCrystal Instance;
     public LeaderboardYG leaderboard;
-    
+    [SerializeField] float waitSendRecord;
+
 
     private void Awake()
     {
@@ -26,7 +27,11 @@ public class LeadbordCrystal : MonoBehaviour
         int saveCrystal = GamePLay.instance.crystal;
 
         if (currentCrysta > saveCrystal )
+        {
             leaderboard.NewScore(GamePLay.instance.crystal);
+            leaderboard.UpdateLB();
+        }
+           
         
        
     }
@@ -36,8 +41,8 @@ public class LeadbordCrystal : MonoBehaviour
         while (true)
         {
             UpdateCrystal();
-            leaderboard.UpdateLB();
-            yield return new WaitForSeconds(5f);
+            
+            yield return new WaitForSeconds(waitSendRecord);
         }
 
     }

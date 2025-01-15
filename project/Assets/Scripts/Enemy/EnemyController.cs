@@ -62,7 +62,8 @@ public class EnemyController : MonoBehaviour
 
         if (Physics.BoxCast(origin, boxSize / 2, direction, out RaycastHit hit, Quaternion.identity, rangeCast))
         {
-            if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Npc"))
+
+            if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Npc") || hit.collider.name == "PlayerMesh")
             {
                 currentTarget = hit.collider.transform;
             }
@@ -96,6 +97,7 @@ public class EnemyController : MonoBehaviour
         {
             animator.SetBool("run", false);
             agent.ResetPath();
+            transform.rotation = startRotation;
         }
     }
 

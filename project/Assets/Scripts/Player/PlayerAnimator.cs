@@ -18,7 +18,8 @@ public class PlayerAnimator : MonoBehaviour
     }
     void Update()
     {
-        // Получаем данные о движении из InputService
+        if (DeathPlayer.Instance.isDeathPlayer)
+            return;
         movementInput = inputService.GetMovementAxisRaw();
 
         // Проверяем, двигается ли игрок
@@ -38,5 +39,11 @@ public class PlayerAnimator : MonoBehaviour
             animator.SetTrigger("attack");
             GamePLay.instance.AddPower(5);
         }
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger("attack");
+        GamePLay.instance.AddPower(5);
     }
 }

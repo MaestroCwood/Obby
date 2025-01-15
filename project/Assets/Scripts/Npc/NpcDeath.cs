@@ -7,6 +7,7 @@ public class NpcDeath : MonoBehaviour
     NpcController controller;
     NavMeshAgent agent;
     [SerializeField] SpawnNpc spawnNpc;
+    bool isDeath = false;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -18,16 +19,19 @@ public class NpcDeath : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
-        {
+        if(other.CompareTag("Enemy") && !isDeath)
+        {   
+            isDeath = true;
             EnsureSpawnNpc();
             controller.enabled = false;
             if (agent != null && agent.isActiveAndEnabled)
             {
                 agent.ResetPath();
             }
+
             agent.enabled = false;
             animator.SetTrigger("death");
+
             spawnNpc.countNpc--;
             Destroy(gameObject, 5f);
             

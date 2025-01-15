@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class AudioMagager : MonoBehaviour
 {
@@ -16,10 +17,11 @@ public class AudioMagager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        audioSource = GetComponent<AudioSource>();
     }
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
         imageIcon.sprite = isMute ? spriteIcon[1] : spriteIcon[0];
         audioSource.mute = isMute;
 
@@ -63,5 +65,34 @@ public class AudioMagager : MonoBehaviour
     public void SoundFx(int nameClip)
     {
         audioSource.PlayOneShot(audioFx[nameClip]);
+    }
+
+    //private void OnApplicationFocus(bool focus)
+    //{
+
+    //    if (audioSource == null) return;
+
+    //    audioSource.mute = !focus;
+    //}
+
+    private void OnEnable()
+    {
+        YandexGame.onVisibilityWindowGame += OnVisibilityWindowGame;
+    }
+
+    // Отписываемся от события открытия/закрытия вкладки игры
+    private void OnDisable()
+    {
+        YandexGame.onVisibilityWindowGame -= OnVisibilityWindowGame;
+    }
+
+    // Метод, который выполнится при открытии/закрытии вкладки игры
+    void OnVisibilityWindowGame(bool visible)
+    {   if(audioSource != null)
+        {
+            audioSource.mute = !visible;
+        }
+      
+        Time.timeScale = visible ? 1 : 0;
     }
 }

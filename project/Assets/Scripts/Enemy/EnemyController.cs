@@ -12,14 +12,14 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 startPos;
     private Transform currentTarget;
-    private Animator animator;
+   // private Animator animator;
     private Quaternion startRotation;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         startPos = transform.position;
-        animator = GetComponent<Animator>();
+       // animator = GetComponent<Animator>();
         startRotation = transform.rotation;
     }
 
@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
         if (currentTarget != null)
         {
             agent.SetDestination(currentTarget.position);
-            animator.SetBool("run", true);
+           // animator.SetBool("run", true);
         }
     }
 
@@ -86,7 +86,7 @@ public class EnemyController : MonoBehaviour
         if (Vector3.Distance(transform.position, startPos) > agent.stoppingDistance)
         {
             agent.SetDestination(startPos);
-            animator.SetBool("run", true);
+            //animator.SetBool("run", true);
         }
     }
 
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour
     {
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            animator.SetBool("run", false);
+            //animator.SetBool("run", false);
             agent.ResetPath();
             transform.rotation = startRotation;
         }

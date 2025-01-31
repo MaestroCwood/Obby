@@ -1,0 +1,18 @@
+newmtl Object01Mtl
+Material Color
+Ka 0.373615 0.368591 0.383775
+Kd 0.373615 0.368591 0.383775
+Ks 0.0322335 0.0318 0.03311 
+
+d 1
+
+Ns 255
+
+map_Ka Object01_diff.png
+map_Kd Object01_diff.png
+map_d Object01_diff.png
+
+map_Bump Object01_nmap.png
+
+map_Ns Object01_spec.png
+

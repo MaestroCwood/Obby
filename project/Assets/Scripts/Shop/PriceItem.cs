@@ -20,11 +20,7 @@ public class PriceItem : MonoBehaviour
     public bool isSelected = false;
     public bool isDefaultSkin = false;
 
-    private void Awake()
-    {
-       
-       
-    }
+
     void Start()
     {   
         textPrice.text = priceCard.ToString();

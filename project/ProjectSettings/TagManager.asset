@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Waypoint
   - labPositionTransform
+  - Lobby
   layers:
   - Default
   - TransparentFX

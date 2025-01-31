@@ -56,13 +56,14 @@ public class GamePLay : MonoBehaviour
     public void UpdateCrystal()
     {
         textCrystal.text = crystal.ToString();
+        PlayerPrefs.SetInt("Crystal", crystal);
+        PlayerPrefs.Save();
     }
 
     public void AddCrystal(int crystals)
     {
         crystal += crystals;
-        PlayerPrefs.SetInt("Crystal", crystal);
-        PlayerPrefs.Save();
+       
         UpdateCrystal();
     }
 

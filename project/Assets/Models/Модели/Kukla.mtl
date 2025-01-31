@@ -1,0 +1,92 @@
+newmtl Arml1Mtl
+Material Color
+Ka 0.88318 0.804559 0.579547
+Kd 0.88318 0.804559 0.579547
+Ks 0.0761959 0.0694129 0.0500001 
+
+d 1
+
+Ns 255
+
+newmtl Eyes1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0627451 0.0627451 0.0627451 
+
+d 1
+
+Ns 0
+
+map_Ka Eyes1_diff.png
+map_Kd Eyes1_diff.png
+map_d Eyes1_diff.png
+
+newmtl Rightleg1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.027451 0.027451 0.027451 
+
+d 1
+
+Ns 0
+
+map_Ka Rightleg1_diff.png
+map_Kd Rightleg1_diff.png
+map_d Rightleg1_diff.png
+
+newmtl Face1Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0627451 0.0627451 0.0627451 
+
+d 1
+
+Ns 0
+
+map_Ka Face1_diff.png
+map_Kd Face1_diff.png
+map_d Face1_diff.png
+
+newmtl Part1Mtl
+Material Color
+Ka 0.88318 0.804559 0.579547
+Kd 0.88318 0.804559 0.579547
+Ks 0.0554152 0.0504821 0.0363637 
+
+d 1
+
+Ns 0
+
+newmtl Hairtale1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.000162248 0.000162248 0.000162248 
+
+d 1
+
+Ns 0
+
+newmtl Ruber1Mtl
+Material Color
+Ka 0.409826 0 0.409826
+Kd 0.409826 0 0.409826
+Ks 0.162323 0 0.162323 
+
+d 1
+
+Ns 0
+
+newmtl Mainhair1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 1
+
+Ns 0
+

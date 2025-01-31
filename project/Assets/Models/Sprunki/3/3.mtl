@@ -1,0 +1,76 @@
+newmtl Bottomrighteyelid1Mtl
+Material Color
+Ka 0.383775 1 0
+Kd 0.383775 1 0
+Ks 0.016555 0.0431373 0 
+
+d 1
+
+Ns 0
+
+map_Ka Bottomrighteyelid1_diff.png
+map_Kd Bottomrighteyelid1_diff.png
+map_d Bottomrighteyelid1_diff.png
+
+map_Bump Bottomrighteyelid1_nmap.png
+
+map_Ns Bottomrighteyelid1_spec.png
+
+newmtl Neutralmouth1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.000233231 0.000233231 0.000233231 
+
+d 1
+
+Ns 0
+
+newmtl Pad1Mtl
+Material Color
+Ka 0 1 0
+Kd 0 1 0
+Ks 0 0.0901961 0 
+
+d 1
+
+Ns 0
+
+newmtl Neutrallefteye1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 1
+
+Ns 0
+
+newmtl Lense1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 0.901961
+
+Ns 0
+
+newmtl Owakcx1Mtl
+Material Color
+Ka 0.859174 0.708298 0
+Kd 0.859174 0.708298 0
+Ks 0.0370624 0.030554 0 
+
+d 1
+
+Ns 0
+
+map_Ka Bottomrighteyelid1_diff.png
+map_Kd Bottomrighteyelid1_diff.png
+map_d Bottomrighteyelid1_diff.png
+
+map_Bump Bottomrighteyelid1_nmap.png
+
+map_Ns Bottomrighteyelid1_spec.png
+

@@ -1,3 +1,5 @@
+using System.Collections;
+using KinematicCharacterController;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -13,6 +15,9 @@ public class AudioMagager : MonoBehaviour
     public Image imageIcon;
     public bool isMute;
     private int currentTrackIndex = 0;
+    [SerializeField] float offsetZMin, offsetZMax;
+
+    public KinematicCharacterMotor kinematicCharacter;
 
     private void Awake()
     {
@@ -27,9 +32,30 @@ public class AudioMagager : MonoBehaviour
 
         PlayNextTrack();
 
+        
+       
     }
 
+    private void Update()
+    {
+        bool isOutOfBounds = kinematicCharacter.transform.position.z <= offsetZMin ||
+                         kinematicCharacter.transform.position.z >= offsetZMax;
 
+        if (isOutOfBounds)
+        {
+            if (audioSource.isPlaying) // ќстанавливаем музыку, если она играет
+            {
+                audioSource.Stop();
+            }
+        }
+        else
+        {
+            if (!audioSource.isPlaying) // «апускаем музыку, только если она не играет
+            {
+                PlayNextTrack();
+            }
+        }
+    }
     public void TogleMute()
     {
         isMute = !isMute;
@@ -41,7 +67,8 @@ public class AudioMagager : MonoBehaviour
 
     void PlayNextTrack()
     {
-        if (audioClips.Length == 0) return;
+       
+        if (audioClips.Length == 0  ) return;
 
         audioSource.clip = audioClips[currentTrackIndex];
         audioSource.Play();
@@ -95,4 +122,6 @@ public class AudioMagager : MonoBehaviour
       
         Time.timeScale = visible ? 1 : 0;
     }
+
+  
 }

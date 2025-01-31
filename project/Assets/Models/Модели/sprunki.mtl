@@ -1,0 +1,332 @@
+newmtl Thumbnail1Mtl
+Material Color
+Ka 0.0824142 0.20471 0.43134
+Kd 0.0824142 0.20471 0.43134
+Ks 0.00355512 0.00883063 0.0186068 
+
+d 1
+
+Ns 0
+
+map_Ka Thumbnail1_diff.png
+map_Kd Thumbnail1_diff.png
+map_d Thumbnail1_diff.png
+
+map_Bump Thumbnail1_nmap.png
+
+map_Ns Thumbnail1_spec.png
+
+newmtl Thumbnail2Mtl
+Material Color
+Ka 1 1 1
+Kd 1 1 1
+Ks 0.0431373 0.0431373 0.0431373 
+
+d 1
+
+Ns 0
+
+map_Ka Thumbnail2_diff.png
+map_Kd Thumbnail2_diff.png
+map_d Thumbnail2_diff.png
+
+newmtl Torso1Mtl
+Material Color
+Ka 0.499505 0.523443 0.529523
+Kd 0.499505 0.523443 0.529523
+Ks 0.197843 0.207325 0.209733 
+
+d 1
+
+Ns 0
+
+newmtl Glassscreenlayer1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00258583 0.00258583 0.00258583 
+
+d 0.25098
+
+Ns 0
+
+map_Ka Glassscreenlayer1_diff.png
+map_Kd Glassscreenlayer1_diff.png
+map_d Glassscreenlayer1_diff.png
+
+map_Bump Glassscreenlayer1_nmap.png
+
+map_Ns Glassscreenlayer1_spec.png
+
+newmtl Extralayer21Mtl
+Material Color
+Ka 1 0.573159 0.0289912
+Kd 1 0.573159 0.0289912
+Ks 0.396078 0.227016 0.0114828 
+
+d 1
+
+Ns 0
+
+newmtl Antennas1Mtl
+Material Color
+Ka 0.859174 0.708298 0
+Kd 0.859174 0.708298 0
+Ks 0.3403 0.280542 0 
+
+d 1
+
+Ns 0
+
+newmtl Screenlightinglayer1Mtl
+Material Color
+Ka 0.0824142 0.20471 0.43134
+Kd 0.0824142 0.20471 0.43134
+Ks 0.00743344 0.018464 0.0389052 
+
+d 1
+
+Ns 0
+
+newmtl Visorbelt1Mtl
+Material Color
+Ka 0.91575 0.618686 0.0253713
+Kd 0.91575 0.618686 0.0253713
+Ks 0.362709 0.245048 0.010049 
+
+d 1
+
+Ns 0
+
+newmtl Screenlayer1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00172388 0.00172388 0.00172388 
+
+d 1
+
+Ns 255
+
+map_Ka Screenlayer1_diff.png
+map_Kd Screenlayer1_diff.png
+map_d Screenlayer1_diff.png
+
+map_Bump Screenlayer1_nmap.png
+
+map_Ns Screenlayer1_spec.png
+
+newmtl Visor1Mtl
+Material Color
+Ka 1 1 0
+Kd 1 1 0
+Ks 0.396078 0.396078 0 
+
+d 1
+
+Ns 0
+
+newmtl Lefteye1Mtl
+Material Color
+Ka 0.157281 0.325037 0.598942
+Kd 0.157281 0.325037 0.598942
+Ks 0.0141861 0.0293171 0.0540222 
+
+d 1
+
+Ns 0
+
+newmtl Bottomlefteyelid1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.000101405 0.000101405 0.000101405 
+
+d 1
+
+Ns 0
+
+map_Ka Torso2_diff.png
+map_Kd Torso2_diff.png
+map_d Torso2_diff.png
+
+map_Bump Torso2_nmap.png
+
+map_Ns Torso2_spec.png
+
+newmtl Screenlayer2Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00258583 0.00258583 0.00258583 
+
+d 1
+
+Ns 0
+
+map_Ka Glassscreenlayer1_diff.png
+map_Kd Glassscreenlayer1_diff.png
+map_d Glassscreenlayer1_diff.png
+
+map_Bump Glassscreenlayer1_nmap.png
+
+map_Ns Glassscreenlayer1_spec.png
+
+newmtl Torso2Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0368863 0.0368863 0.0368863 
+
+d 1
+
+Ns 0
+
+map_Ka Torso2_diff.png
+map_Kd Torso2_diff.png
+map_d Torso2_diff.png
+
+map_Bump Torso2_nmap.png
+
+map_Ns Torso2_spec.png
+
+newmtl Lefteyeball1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 1
+
+Ns 0
+
+newmtl Glowingpupil1Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0848385 0.0848385 0.0848385 
+
+d 0.752941
+
+Ns 0
+
+newmtl Lense1Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 0.752941
+
+Ns 0
+
+newmtl Torso3Mtl
+Material Color
+Ka 0.859174 0.708298 0
+Kd 0.859174 0.708298 0
+Ks 0.0370624 0.030554 0 
+
+d 1
+
+Ns 0
+
+map_Ka Thumbnail1_diff.png
+map_Kd Thumbnail1_diff.png
+map_d Thumbnail1_diff.png
+
+map_Bump Thumbnail1_nmap.png
+
+map_Ns Thumbnail1_spec.png
+
+newmtl Smilingmouth3Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.000233231 0.000233231 0.000233231 
+
+d 1
+
+Ns 0
+
+newmtl Lefteyebrow2Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.000111545 0.000111545 0.000111545 
+
+d 1
+
+Ns 0
+
+map_Ka Thumbnail1_diff.png
+map_Kd Thumbnail1_diff.png
+map_d Thumbnail1_diff.png
+
+map_Bump Thumbnail1_nmap.png
+
+map_Ns Thumbnail1_spec.png
+
+newmtl Torso4Mtl
+Material Color
+Ka 0.21952 0.0545923 0
+Kd 0.21952 0.0545923 0
+Ks 0.00946948 0.00235496 0 
+
+d 1
+
+Ns 0
+
+map_Ka Thumbnail1_diff.png
+map_Kd Thumbnail1_diff.png
+map_d Thumbnail1_diff.png
+
+map_Bump Thumbnail1_nmap.png
+
+map_Ns Thumbnail1_spec.png
+
+newmtl Bucket1Mtl
+Material Color
+Ka 0.275833 0.275833 0.311181
+Kd 0.275833 0.275833 0.311181
+Ks 0.183889 0.183889 0.207454 
+
+d 1
+
+Ns 255
+
+map_Ka Screenlayer1_diff.png
+map_Kd Screenlayer1_diff.png
+map_d Screenlayer1_diff.png
+
+map_Bump Screenlayer1_nmap.png
+
+map_Ns Screenlayer1_spec.png
+
+newmtl Lense5Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 0.952941
+
+Ns 0
+
+newmtl Lefteyebrow3Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 6.0843e-05 6.0843e-05 6.0843e-05 
+
+d 1
+
+Ns 0
+
+map_Ka Lefteyebrow3_diff.png
+map_Kd Lefteyebrow3_diff.png
+map_d Lefteyebrow3_diff.png
+
+map_Bump Lefteyebrow3_nmap.png
+
+map_Ns Lefteyebrow3_spec.png
+

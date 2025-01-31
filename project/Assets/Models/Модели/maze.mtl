@@ -1,0 +1,60 @@
+newmtl SmoothBlockModel16Mtl
+Material Color
+Ka 0 1 0
+Kd 0 1 0
+Ks 0 0.0627451 0 
+
+d 1
+
+Ns 0
+
+newmtl SmoothBlockModel1Mtl
+Material Color
+Ka 1 0 0
+Kd 1 0 0
+Ks 0.0627451 0 0 
+
+d 1
+
+Ns 0
+
+newmtl SmoothBlockModel15Mtl
+Material Color
+Ka 0.0986892 0.0118813 0.0986892
+Kd 0.0986892 0.0118813 0.0986892
+Ks 0.00619226 0.000745496 0.00619226 
+
+d 1
+
+Ns 0
+
+newmtl SmoothBlockModel2Mtl
+Material Color
+Ka 1 0.442323 0
+Kd 1 0.442323 0
+Ks 0.0627451 0.0277536 0 
+
+d 1
+
+Ns 0
+
+newmtl SmoothBlockModel9Mtl
+Material Color
+Ka 1 1 0
+Kd 1 1 0
+Ks 0.0627451 0.0627451 0 
+
+d 1
+
+Ns 0
+
+newmtl SmoothBlockModel22Mtl
+Material Color
+Ka 0 0.00226295 0.442323
+Kd 0 0.00226295 0.442323
+Ks 0 0.000141989 0.0277536 
+
+d 1
+
+Ns 0
+

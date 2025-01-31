@@ -10,6 +10,7 @@ public class DeathPlayer : MonoBehaviour
     [SerializeField] KinematicCharacterMotor motor;
     [SerializeField] ExampleCharacterCamera ExampleCharacterCamera;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] Transform restartPositionStart;
     
     float targetDistanceCamera;
     public bool isDeathPlayer = false;
@@ -43,7 +44,7 @@ public class DeathPlayer : MonoBehaviour
 
     public void RestartPositionPlayer()
     {
-        Vector3 position = new Vector3(1, 0, 0);
+        Vector3 position =  restartPositionStart.position;
         motor.SetPosition(position);
         isDeathPlayer = false;
         motor.enabled = true;

@@ -32,6 +32,7 @@ public class PlayerAnimator : MonoBehaviour
         if (inputService.GetJumpButton() && Motor.GroundingStatus.IsStableOnGround)
         {
             animator.SetTrigger("jump");
+            AudioPlayerController.Instance.PlayFxPlayer(0);
         }
 
         if (inputService.GetActionButton())

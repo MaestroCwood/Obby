@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,20 +8,25 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float boxWidth = 1f;    // Ширина BoxCast
     [SerializeField] float boxHeight = 2f;   // Высота BoxCast
     [SerializeField] float maxFollowDistance = 15f; // Максимальная дистанция для преследования
-    [SerializeField] Transform startCast;    // Точка начала BoxCast
+    [SerializeField] Transform startCast;
+    [SerializeField] float timerRestart, randomMin, randomMax;
+    float startTimer;
 
     private NavMeshAgent agent;
     private Vector3 startPos;
     private Transform currentTarget;
-   // private Animator animator;
+    // private Animator animator;
     private Quaternion startRotation;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         startPos = transform.position;
-       // animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         startRotation = transform.rotation;
+        startTimer = timerRestart;
+
+        StartCoroutine(nameof(TimerRandomSpeed));
     }
 
     void Update()
@@ -76,7 +82,7 @@ public class EnemyController : MonoBehaviour
         if (currentTarget != null)
         {
             agent.SetDestination(currentTarget.position);
-           // animator.SetBool("run", true);
+            // animator.SetBool("run", true);
         }
     }
 
@@ -101,7 +107,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Визуализация BoxCast в редакторе
+    
     private void OnDrawGizmos()
     {
         if (startCast == null) return;
@@ -111,5 +117,23 @@ public class EnemyController : MonoBehaviour
         Vector3 boxSize = new Vector3(boxWidth, boxHeight, rangeCast);
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, boxSize);
+    }
+
+    IEnumerator TimerRandomSpeed()
+    {
+        while (true)
+        {
+            while (timerRestart > 0)
+            {
+                timerRestart--;
+              
+                yield return new WaitForSeconds(1f);                
+            }
+
+            float randomSpeed = Mathf.Round(Random.Range(randomMin, randomMax) * 10) / 10f;
+            agent.speed = randomSpeed;
+            timerRestart = startTimer;
+            yield return null;
+        }
     }
 }

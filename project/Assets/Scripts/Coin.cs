@@ -34,7 +34,7 @@ public class Coin : MonoBehaviour
                 addCountCoin = random;
                 AudioMagager.Instance.SoundFx(0);
                 GamePLay.instance.AddCoin(addCountCoin);
-                Leaderbrd.Instance.UpdateScore();
+               // Leaderbrd.Instance.UpdateScore();
                 // Destroy(gameObject);
                 isActive = false;
                 renderer.enabled = false;

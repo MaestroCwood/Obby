@@ -14,12 +14,13 @@ public class PizzaController : MonoBehaviour
     {
         renderer = GetComponent<MeshRenderer>();
         startTimer = timeActive;
+    
     }
 
 
     void Update()
     {
-        transform.Rotate(0, speedRotation * Time.deltaTime, 0, Space.Self);
+        transform.rotation = Quaternion.Euler(0, Time.time * speedRotation, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,9 +29,10 @@ public class PizzaController : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             isActive = false;
+            renderer.enabled = false;
             JumpBoost.Instance.AddJumpForce(addJumpBoost);
             AudioMagager.Instance.SoundFx(3);
-            renderer.enabled = false;
+            
             StartCoroutine(nameof(TimerRenderer));
         }
     }

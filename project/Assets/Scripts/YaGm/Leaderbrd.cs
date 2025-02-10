@@ -19,14 +19,13 @@ public class Leaderbrd : MonoBehaviour
 
     public void UpdateScore()
     {
-        int saveCoin = PlayerPrefs.GetInt("Coin");
-        int currentCoin = GamePLay.instance.coin;
 
-        if(currentCoin > saveCoin)
-        {
-            leaderboard.NewScore(GamePLay.instance.coin);
-            leaderboard.UpdateLB();
-        }
+
+        leaderboard.NewScore(GamePLay.instance.coin);
+        leaderboard.UpdateLB();
+        
+        
+        
         
     }
 
@@ -43,6 +42,7 @@ public class Leaderbrd : MonoBehaviour
     void StartUpdateLb()
     {
         StartCoroutine(nameof(UpdateLeaderBord));
+       
 
     }
 }

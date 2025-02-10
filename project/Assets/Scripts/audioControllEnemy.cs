@@ -32,7 +32,8 @@ public class audioControllEnemy : MonoBehaviour
         {
             PlaySoundEnemy();
             StartCoroutine(TimerFx());
-        }
+        } else 
+            audioSource.Stop();
     }
 
     private int GetRandomSoundIndex()

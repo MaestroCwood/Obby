@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1462274848208877384}
   - component: {fileID: 3936903543716421561}
   - component: {fileID: 6516520225866229932}
+  - component: {fileID: 7380259716875144486}
+  - component: {fileID: 6732632143438473181}
   m_Layer: 0
   m_Name: Pizza Add Jump
   m_TagString: Untagged
@@ -26,10 +28,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6917055673308504717}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.10035, y: 0.149, z: 11.473282}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86,3 +88,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7380259716875144486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917055673308504717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c2c3816b5628c40902650ed1604627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedRotation: 85
+  timeActive: 60
+  addJumpBoost: 0.1
+--- !u!136 &6732632143438473181
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6917055673308504717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.31337246
+  m_Height: 0.6267449
+  m_Direction: 1
+  m_Center: {x: -0.0040491424, y: 0.030176759, z: -0.0054891906}

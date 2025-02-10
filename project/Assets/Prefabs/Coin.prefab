@@ -127,6 +127,7 @@ MonoBehaviour:
   speedRotete: 180
   minRandom: 15
   maxRandom: 25
+  waitBeforCreate: 60
 --- !u!208 &4789611522451576781
 NavMeshObstacle:
   m_ObjectHideFlags: 0

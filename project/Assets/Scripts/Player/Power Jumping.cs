@@ -2,6 +2,7 @@ using TMPro;
 using KinematicCharacterController;
 using UnityEngine;
 using KinematicCharacterController.Examples;
+using System.Collections;
 
 
 public class PowerJumping : MonoBehaviour
@@ -16,10 +17,14 @@ public class PowerJumping : MonoBehaviour
     public float maxJumpHeight = 0f;
     [SerializeField] float offsetZMin, offsetzMax;
     [SerializeField]private float heightCorrection = 0.5f;
+    [SerializeField] float delaySetLederBord;
+
+    bool isCoroutineRunning = false;
 
     private void Awake()
     {
         Instance = this;
+        Debug.Log("MaxJumpHieght " + maxJumpHeight);
     }
 
     private void Update()
@@ -35,8 +40,9 @@ public class PowerJumping : MonoBehaviour
             if (kinematicCharacter.GroundingStatus.FoundAnyGround)
             {
                 groundLevel = kinematicCharacter.GroundingStatus.GroundCollider.transform.position.y;
-                
+               // SaveScore();
                 maxJumpHeight = 0f;
+                
             }
 
             float jumpHeight = playerFeetY - groundLevel;
@@ -44,24 +50,39 @@ public class PowerJumping : MonoBehaviour
             if (jumpHeight > maxJumpHeight)
             {
                 maxJumpHeight = jumpHeight;
-                LeaderBordJump.Instance.SetNewScoreLb();
+               
+                SaveScore();
             }
-                
-            
-
+                       
             textPower.text = maxJumpHeight.ToString("F1");
-            if(PlayerPrefs.GetFloat("MaxJump",0) < maxJumpHeight)
-            {
-                LeaderBordJump.UpdateLbJumping();
-            }
+           
         }
-        else maxJumpHeight = 0;
-
-       
-
-        
+        else maxJumpHeight = 0;     
 
     }
 
-    
+    public void SaveScore()
+    {
+        float saveScore = PlayerPrefs.GetFloat("MaxJump", 0);
+        float currentScore = maxJumpHeight;
+
+        if(currentScore > saveScore)
+        {
+            PlayerPrefs.SetFloat("MaxJump", currentScore);
+            PlayerPrefs.Save();
+
+            if (!isCoroutineRunning)
+            {
+                StartCoroutine(DelaySetLederBord());
+            }
+        }
+    }
+
+    IEnumerator DelaySetLederBord()
+    {
+        isCoroutineRunning = true;
+        yield return new WaitForSeconds(delaySetLederBord);
+        LeaderBordJump.Instance.SetNewScoreLb();
+        isCoroutineRunning = false;
+    }
 }

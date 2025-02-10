@@ -37,7 +37,8 @@ public class DeathPlayer : MonoBehaviour
             animator.SetTrigger("deatch");
             motor.enabled = false;
             isDeathPlayer = true;
-            ExampleCharacterCamera.TargetDistance = 20;           
+            ExampleCharacterCamera.TargetDistance = 20;  
+            
            
         }
     }
@@ -49,6 +50,7 @@ public class DeathPlayer : MonoBehaviour
         isDeathPlayer = false;
         motor.enabled = true;
         ExampleCharacterCamera.TargetDistance = targetDistanceCamera;
+        AudioMagager.Instance.EnabledMusicBg();
        
        
     }

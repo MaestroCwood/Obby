@@ -75,7 +75,7 @@ namespace Services
             if (IsMobile)
             {
                 moveDir = ygTouchscreen.GetTouchscreenInput();
-                Debug.Log(moveDir);
+               
                 return moveDir;   
             }
 

@@ -20,7 +20,7 @@ public class JumpBoost : MonoBehaviour
     }
     private void Start()
     {
-        textCurrentJump.text = playerController.JumpUpSpeed.ToString();
+        UpdateTextForceJump();
     }
 
     public void AddJumpForce(float addJumpForce)

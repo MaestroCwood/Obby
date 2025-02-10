@@ -21,29 +21,21 @@ public class LeaderBordPower : MonoBehaviour
 
     public void UpdatePower()
     {
-        int saveCoin = PlayerPrefs.GetInt("Power");
-        int currentCoin = GamePLay.instance.power;
-
-        if (currentCoin > saveCoin)
-        {
-            leaderboard.NewScore(GamePLay.instance.power);
-            leaderboard.UpdateLB();
-        }
+       
+        leaderboard.NewScore(GamePLay.instance.power);
+        leaderboard.UpdateLB();
+        
 
     }
 
     IEnumerator UpdateLeaderBordPower()
-    {
-        
+    {      
         while (true)
-        {
-           
+        {          
             UpdatePower();
-            
+           
             yield return new WaitForSeconds(waitSendRecord);
-        }
-
-        
+        }      
     }
 
     void StartUpdateLb()

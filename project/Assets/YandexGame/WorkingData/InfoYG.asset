@@ -28,7 +28,7 @@ MonoBehaviour:
   showFirstAd: 1
   rewardedAfterClosing: 1
   adDisplayCalls: 1
-  fullscreenAdInterval: 120
+  fullscreenAdInterval: 90
   durationOfAdSimulation: 0.5
   loadAdWithDelaySimulation: 0
   testErrorOfRewardedAdsInEditor: 0
@@ -280,7 +280,7 @@ MonoBehaviour:
     thisPlayer:
       rank: 2
       score: 10
-  - technoName: jump
+  - technoName: Jump
     entries: 'Test LeaderBoard
 
       Name: time
@@ -293,7 +293,7 @@ MonoBehaviour:
       3. Maria: 23'
     isDefault: 0
     isInvertSortOrder: 0
-    decimalOffset: 0
+    decimalOffset: 1
     type: numeric
     players:
     - rank: 6

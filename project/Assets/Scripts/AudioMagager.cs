@@ -10,118 +10,97 @@ public class AudioMagager : MonoBehaviour
 
     public AudioClip[] audioClips;
     public AudioClip[] audioFx;
-    AudioSource audioSource;
+    
     public Sprite[] spriteIcon;
     public Image imageIcon;
     public bool isMute;
     private int currentTrackIndex = 0;
     [SerializeField] float offsetZMin, offsetZMax;
-
+    public AudioSource musicSource; 
+    public AudioSource sfxSource;
     public KinematicCharacterMotor kinematicCharacter;
+
+    private bool wasManuallyStopped = false; 
 
     private void Awake()
     {
         Instance = this;
-        audioSource = GetComponent<AudioSource>();
+        
     }
+
     void Start()
     {
-        
         imageIcon.sprite = isMute ? spriteIcon[1] : spriteIcon[0];
-        audioSource.mute = isMute;
+        musicSource.mute = isMute;
 
         PlayNextTrack();
-
-        
-       
     }
 
-    private void Update()
-    {
-        bool isOutOfBounds = kinematicCharacter.transform.position.z <= offsetZMin ||
-                         kinematicCharacter.transform.position.z >= offsetZMax;
-
-        if (isOutOfBounds)
-        {
-            if (audioSource.isPlaying) // Останавливаем музыку, если она играет
-            {
-                audioSource.Stop();
-            }
-        }
-        else
-        {
-            if (!audioSource.isPlaying) // Запускаем музыку, только если она не играет
-            {
-                PlayNextTrack();
-            }
-        }
-    }
     public void TogleMute()
     {
         isMute = !isMute;
-        audioSource.mute = isMute;
+        musicSource.mute = isMute;
         imageIcon.sprite = isMute ? spriteIcon[1] : spriteIcon[0];
-          
-        
     }
 
     void PlayNextTrack()
     {
-       
-        if (audioClips.Length == 0  ) return;
+        if (audioClips.Length == 0) return;
 
-        audioSource.clip = audioClips[currentTrackIndex];
-        audioSource.Play();
+        musicSource.clip = audioClips[currentTrackIndex];
+        musicSource.Play();
 
-        
         currentTrackIndex = (currentTrackIndex + 1) % audioClips.Length;
 
-       
-        Invoke(nameof(PlayNextTrack), audioSource.clip.length);
+        // Вызываем PlayNextTrack через время, равное длине текущего трека
+        Invoke(nameof(PlayNextTrack), musicSource.clip.length);
     }
 
     void StartSoundBg()
     {
         AudioClip clip = audioClips[Random.Range(0, audioClips.Length)];
-        audioSource.clip = clip;
-
-        audioSource.Play();
-
+        musicSource.clip = clip;
+        musicSource.Play();
     }
 
     public void SoundFx(int nameClip)
     {
-        audioSource.PlayOneShot(audioFx[nameClip]);
+
+        sfxSource.PlayOneShot(audioFx[nameClip]);
+        
     }
-
-    //private void OnApplicationFocus(bool focus)
-    //{
-
-    //    if (audioSource == null) return;
-
-    //    audioSource.mute = !focus;
-    //}
 
     private void OnEnable()
     {
         YandexGame.onVisibilityWindowGame += OnVisibilityWindowGame;
     }
 
-    // Отписываемся от события открытия/закрытия вкладки игры
     private void OnDisable()
     {
         YandexGame.onVisibilityWindowGame -= OnVisibilityWindowGame;
     }
 
-    // Метод, который выполнится при открытии/закрытии вкладки игры
     void OnVisibilityWindowGame(bool visible)
-    {   if(audioSource != null)
+    {
+        if (musicSource != null)
         {
-            audioSource.mute = !visible;
+            musicSource.mute = !visible;
         }
-      
+
         Time.timeScale = visible ? 1 : 0;
     }
 
-  
+    public void DisableMusicBg()
+    {
+        musicSource.Stop();
+    }
+
+    public void EnabledMusicBg()
+    {
+        
+        if(!musicSource.isPlaying)
+        {
+            PlayNextTrack();
+        }
+    }
 }

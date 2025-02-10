@@ -20,6 +20,7 @@ public class TeleportLab : MonoBehaviour
         {
             
             motor.SetPosition(newPosition.position);
+            AudioMagager.Instance.DisableMusicBg();
            
             if(rewardPets.getted)
             {

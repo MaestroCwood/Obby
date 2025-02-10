@@ -37,6 +37,7 @@ public class PlayerAnimator : MonoBehaviour
 
         if (inputService.GetActionButton())
         {
+            if (Time.timeScale <= 0) return;
             animator.SetTrigger("attack");
             GamePLay.instance.AddPower(5);
         }
@@ -44,6 +45,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void Attack()
     {
+        
         animator.SetTrigger("attack");
         GamePLay.instance.AddPower(5);
     }

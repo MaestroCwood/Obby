@@ -18,7 +18,7 @@ public class TeleportHome : MonoBehaviour
         {
                     
             motor.SetPosition(newPosition.position);         
-
+            AudioMagager.Instance.EnabledMusicBg();
             if (rewardPets.getted)
             {
                 agent.enabled = false;
